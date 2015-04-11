@@ -1,9 +1,12 @@
 Meteor.startup(function () {
   if (Contacts.find().count() === 0) {
-    Contacts.insert({name: 'Trent'});
-    Contacts.insert({name: 'Zach'});
-    Contacts.insert({name: 'Matt'});
-    Contacts.insert({name: 'Khalid'});
-    Contacts.insert({name: 'Phil'});
+    for (var i=0; i < 50; i++) {
+      Contacts.insert({
+        first_name: faker.name.firstName(),
+        last_name: faker.name.lastName(),
+        company_name: faker.company.companyName(),
+        image: faker.image.avatar()
+      });
+    }
   }
 });
