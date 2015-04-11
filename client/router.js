@@ -4,16 +4,6 @@ Router.configure({
   loadingTemplate: 'loadingLayout'
 });
 
-Router.route('/', function() {
-  this.render('contacts', {
-    data: {
-      contacts: function() {
-        return Contacts.find();
-      }
-    }
-  });
-});
-
 Router.route('/contact/:_id', {
   name: 'contact.show',
   path: '/contact/:_id',
@@ -22,3 +12,9 @@ Router.route('/contact/:_id', {
     return Contacts.findOne({_id: this.params._id});
   }
 });
+
+Transitioner.default({
+  in: 'transition.slideRightBigIn',
+  out: 'transition.slideRightBigOut'
+});
+

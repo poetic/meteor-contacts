@@ -6,7 +6,9 @@
 </body>
 
 <template name="applicationLayout">
-  {{> yield}}
+  {{#transitioner}}
+    {{> yield}}
+  {{/transitioner}}
 </template>
 
 <template name="notFoundLayout">
