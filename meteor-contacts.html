@@ -6,7 +6,7 @@
 </body>
 
 <template name="applicationLayout">
-  <header>Test</header>
+  <header><input type="text" id="searchTerm" placeholder="Search"></header>
   <article>
     {{#transitioner}}
       {{> yield}}
@@ -32,20 +32,19 @@
 
 <template name="contacts">
   <ul class="collection">
-    {{> search}}
     {{#each contacts}}
-	  <li class="collection-item">
-      <a href="{{pathFor route='contact.show'}}">
-        <span>
-          <img src="{{image}}" class="circle profile-pic">
-        </span>
-        <span class="person-info">
-          <div class="name">{{first_name}} {{last_name}}</div>
-          <div class="company">{{company_name}}</div>
-        </span>
-      </a>
-    </li>
-  {{/each}}
+      <li class="collection-item">
+        <a href="{{pathFor route='contact.show'}}">
+          <span>
+            <img src="{{image}}" class="circle profile-pic">
+          </span>
+          <span class="person-info">
+            <div class="name">{{first_name}} {{last_name}}</div>
+            <div class="company">{{company_name}}</div>
+          </span>
+        </a>
+      </li>
+    {{/each}}
   </ul>
 </template>
 
@@ -55,11 +54,4 @@
     <div>{{first_name}} {{last_name}}</div>
   <div>{{company_name}}</div>
   </div>
-
-</template>
-
-<template name="search">
-  <li class="collection-item">
-    <input type="text" id="searchTerm" placeholder="Search">
-  </li>
 </template>
