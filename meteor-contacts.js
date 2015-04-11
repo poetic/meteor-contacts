@@ -6,7 +6,7 @@ if (Meteor.isClient) {
     contacts: function() {
       return Contacts.find({});
     }
-});
+  });
 }
 
 if (Meteor.isServer) {
@@ -18,5 +18,7 @@ if (Meteor.isServer) {
 
 Router.route('/', function () {
   this.layout('ApplicationLayout');
-  this.render('contacts');
+  this.render('contacts', {
+    data: function() { return Contacts.find({}); }
+  });
 });
