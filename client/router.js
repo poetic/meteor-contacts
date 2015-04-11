@@ -12,6 +12,10 @@ Router.route('/', function() {
       }
     }
   });
+  Session.set('pageTitle', 'Contact');
+
+  // TODO: Load this in the proper place...
+  $('ul.tabs').tabs();
 });
 
 Router.route('/contact/:_id', {
@@ -20,5 +24,14 @@ Router.route('/contact/:_id', {
   template: 'contactShow',
   data: function() {
     return Contacts.findOne({_id: this.params._id});
+  },
+  onAfterAction: function() {
+    Session.set('pageTitle', 'Contacts');
   }
 });
+
+Transitioner.default({
+  in: 'transition.slideRightBigIn',
+  out: 'transition.slideRightBigOut'
+});
+
