@@ -12,6 +12,7 @@ Router.route('/', function() {
       }
     }
   });
+  Session.set('pageTitle', 'Contact');
 });
 
 Router.route('/contact/:_id', {
@@ -20,6 +21,9 @@ Router.route('/contact/:_id', {
   template: 'contactShow',
   data: function() {
     return Contacts.findOne({_id: this.params._id});
+  },
+  onAfterAction: function() {
+    Session.set('pageTitle', 'Contacts');
   }
 });
 
