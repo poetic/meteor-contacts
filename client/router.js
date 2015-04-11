@@ -13,6 +13,9 @@ Router.route('/', function() {
     }
   });
   Session.set('pageTitle', 'Contact');
+
+  // TODO: Load this in the proper place...
+  $('ul.tabs').tabs();
 });
 
 Router.route('/contact/:_id', {
