@@ -8,7 +8,16 @@ Router.route('/', function() {
   this.render('contacts', {
     data: {
       contacts: function() {
-        return Contacts.find();
+        var searchTerm = Session.get('searchTerm');
+        return Contacts.find({
+          $or: [
+            { first_name: new RegExp(searchTerm, 'i') },
+            { last_name: new RegExp(searchTerm, 'i') },
+            { company_name: new RegExp(searchTerm, 'i') }
+          ]
+        }, {
+          sort: { last_name: 1 }
+        });
       }
     }
   });
@@ -34,4 +43,3 @@ Transitioner.default({
   in: 'transition.slideRightBigIn',
   out: 'transition.slideRightBigOut'
 });
-

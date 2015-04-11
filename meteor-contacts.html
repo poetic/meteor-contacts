@@ -32,6 +32,7 @@
 
 <template name="contacts">
   <ul class="collection">
+    {{> search}}
     {{#each contacts}}
 	  <li class="collection-item">
       <a href="{{pathFor route='contact.show'}}">
@@ -55,4 +56,10 @@
   <div>{{company_name}}</div>
   </div>
 
+</template>
+
+<template name="search">
+  <li class="collection-item">
+    <input type="text" id="searchTerm" placeholder="Search">
+  </li>
 </template>
