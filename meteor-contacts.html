@@ -1,14 +1,18 @@
-<head>
-  <title>meteor-contacts</title>
-</head>
+<template name="applicationLayout">
+  <head>
+    <title>Contacts</title>
+  </head>
 
-<body>
-  <h1>Welcome to Meteor!</h1>
+  <body>
+    {{> yield}}
+  </body>
+</template>
 
-  {{> hello}}
-</body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="contacts">
+  <ul>
+    {{#each contacts}}
+      <li>{{name}}</li>
+    {{/each}}
+  </ul>
 </template>

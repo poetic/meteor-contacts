@@ -1,0 +1,8 @@
+<template name="list">
+  <ul>
+    <li>First Contact (manually entered)</li>
+    {{#contentFor "contacts"}}
+      <li>{{name}}</li>
+    {{/contentFor}}
+  </ul>
+</template>

@@ -1,23 +1,22 @@
+Contacts = new Mongo.Collection("contacts");
+
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
-
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
+  // client code goes here
+  Template.contacts.helpers({
+    contacts: function() {
+      return Contacts.find({});
     }
-  });
-
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });
+});
 }
 
 if (Meteor.isServer) {
+  // server code goes here
   Meteor.startup(function () {
     // code to run on server at startup
   });
 }
+
+Router.route('/', function () {
+  this.layout('ApplicationLayout');
+  this.render('contacts');
+});
