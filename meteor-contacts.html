@@ -1,11 +1,20 @@
-<template name="applicationLayout">
-  <head>
-    <title>Contacts</title>
-  </head>
+<head>
+  <title>data_contexts</title>
+</head>
 
-  <body>
-    {{> yield}}
-  </body>
+<body>
+</body>
+
+<template name="applicationLayout">
+  {{> yield}}
+</template>
+
+<template name="notFoundLayout">
+  {{> yield}}
+</template>
+
+<template name="loadingLayout">
+  {{> yield}}
 </template>
 
 <template name="contacts">
