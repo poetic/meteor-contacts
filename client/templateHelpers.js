@@ -1,4 +1,4 @@
-Template.search.rendered = function() {
+Template.applicationLayout.rendered = function() {
   if(!this._rendered) {
     this._rendered = true;
     var searchTerm = Session.get('searchTerm');
