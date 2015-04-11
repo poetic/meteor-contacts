@@ -4,6 +4,16 @@ Router.configure({
   loadingTemplate: 'loadingLayout'
 });
 
+Router.route('/', function() {
+  this.render('contacts', {
+    data: {
+      contacts: function() {
+        return Contacts.find();
+      }
+    }
+  });
+});
+
 Router.route('/contact/:_id', {
   name: 'contact.show',
   path: '/contact/:_id',
