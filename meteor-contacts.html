@@ -20,7 +20,15 @@
 <template name="contacts">
   <ul class="collection">
     {{#each contacts}}
-      <li class="collection-item">{{name}}</li>
+      <li class="collection-item">
+        <a href="{{pathFor route='contact.show'}}">
+          {{name}}
+        </a>
+      </li>
     {{/each}}
   </ul>
+</template>
+
+<template name="contactShow">
+  <h3>{{name}}</h3>
 </template>
