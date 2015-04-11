@@ -8,3 +8,31 @@ $blue: #3461AB;
 #iron-router-progress.spinner:before {
   border-color: $blue;
 }
+.collection-item{
+  a {
+    color: black;
+  }
+   span{
+    display: inline-block; 
+    .profile-pic{
+      margin-right: 10px;
+      width: 75px;
+    }
+    &.person-info{
+      position: relative;
+      bottom: 19px;
+      div{
+        font-size: 13px;
+        line-height: 25px;
+      }
+      .company {
+        font-weight: lighter;
+      }
+    }
+  }
+}
+
+//Individual Contact
+.contact-header{
+  text-align: center;
+}
