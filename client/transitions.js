@@ -56,9 +56,10 @@ Meteor.transitioner = (function(){
       if(index === 1){
         finalObject = $(this);
         finalObject.css('visibility', 'hidden');
+        console.log($(this).parent().parent().parent().scrollTop());
         endState = {
           left: $(this).offset().left,
-          top: $(this).offset().top,
+          top: $(this).offset().top + $(this).parent().parent().parent().scrollTop(),
           width: $(this).width(),
           height: $(this).height(),
           textAlign: $(this).css('text-align')}
@@ -68,15 +69,23 @@ Meteor.transitioner = (function(){
       animationTarget.css({top: startState.top, left: startState.left, width: startState.width, height: startState.height, position: 'absolute'});
       index++;
     });
-    animationTarget.css('textAlign', endState.textAlign);
+    if(finalObject.css('textAlign') === 'center'){
+      animationTarget.css('textAlign', endState.textAlign);
+    }
+    console.log('startStateTop', startState.top, 'endStateTop', endState.top);
     animationTarget.animate({
           top: endState.top,
           left: endState.left,
           width: endState.width,
           height: endState.height,
-        }, 1000, function(){
-          animationTarget.remove();
-          finalObject.css('visibility', 'visible');
+        }, {
+          complete: function(){
+            animationTarget.remove();
+            finalObject.css('visibility', 'visible');
+          },
+          duration: 1000,
+          step: function(){
+          }
         });
     startState = {};
     endState = {};
