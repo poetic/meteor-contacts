@@ -16,19 +16,23 @@ Meteor.transitioner = (function(){
   }
   Interface.heroAnimations = function(){
     console.log('called hero');
-    var allHeros = $("[super-hero='true']");
+    var allHeros = $("[super-id]");
+    var found = false;
     var interval = setInterval(function(){
       allHeros.each(function(){
       var target = $('[super-id=\'' + $(this).attr('super-id') + '\']');
         if(target.length > 1){
-          if(!self.isRegistered('hero')){
-            self.registerAnimation('hero');
+          if(!self.isRegistered('hero' + $(this).attr('super-id'))){
+            self.registerAnimation('hero' + $(this).attr('super-id'));
             self.animateHero(target);
             console.log('match-found');
           }
-          clearInterval(interval);
+          found = true;
         }
       });
+      if(found){
+        clearInterval(interval);
+      }
     }, 100);
   }
   Interface.animateHero = function(targets){
@@ -46,7 +50,8 @@ Meteor.transitioner = (function(){
            left: $(this).offset().left,
            top: $(this).offset().top,
            width: $(this).width(),
-           height: $(this).height()};
+           height: $(this).height(),
+           textAlign: $(this).css('text-align')};
         }
       if(index === 1){
         finalObject = $(this);
@@ -55,19 +60,20 @@ Meteor.transitioner = (function(){
           left: $(this).offset().left,
           top: $(this).offset().top,
           width: $(this).width(),
-          height: $(this).height()}
-
+          height: $(this).height(),
+          textAlign: $(this).css('text-align')}
       }
       $('body').append(animationTarget);
       animationTarget.addClass('.removeMe');
       animationTarget.css({top: startState.top, left: startState.left, width: startState.width, height: startState.height, position: 'absolute'});
       index++;
     });
+    animationTarget.css('textAlign', endState.textAlign);
     animationTarget.animate({
           top: endState.top,
           left: endState.left,
           width: endState.width,
-          height: endState.height
+          height: endState.height,
         }, 1000, function(){
           animationTarget.remove();
           finalObject.css('visibility', 'visible');
@@ -75,7 +81,7 @@ Meteor.transitioner = (function(){
     startState = {};
     endState = {};
     setTimeout(function(){
-      self.unRegisterAnimation('hero');
+      self.unRegisterAnimation('hero' + animationTarget.attr('super-id'));
     }, 1000);
   }
   Interface.isRegistered = function(animation){
