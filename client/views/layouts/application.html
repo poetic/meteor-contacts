@@ -6,7 +6,9 @@
 </body>
 
 <template name="applicationLayout">
-  <header><input type="text" id="searchTerm" placeholder="Search"></header>
+  <header>
+    {{> yield 'header'}}
+  </header>
   <article>
     {{#transitioner}}
       {{> yield}}
