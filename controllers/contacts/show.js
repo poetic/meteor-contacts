@@ -1,10 +1,12 @@
 ContactsShowController = ApplicationController.extend({
   data: function() {
-    return Contacts.findOne({_id: this.params._id});
-  },
+    var contact =  Contacts.findOne({_id: this.params._id});
 
-  action: function() {
-    Session.set('pageTitle', 'Contact');
-    this.render();
+    // Apply collection helpers
+    contact = Contacts._transform(contact);
+
+    Session.set('pageTitle', contact.fullName());
+
+    return contact;
   }
 });
