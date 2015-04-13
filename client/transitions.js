@@ -73,24 +73,37 @@ if(!window.Meteor.transitioner){
              width: $(this).width(),
              height: $(this).height(),
              textAlign: $(this).css('text-align'),
-             borderRadius: $(this).css('borderRadius')};
+             borderRadius: $(this).css('borderRadius'),
+             color: $(this).css('color'),
+             fontSize: $(this).css('font-size')};
           }
         if(index === 1){
           finalObject = $(this);
           finalObject.css('visibility', 'hidden');
+          var scrollOff = $(this).parent().parent().parent().parent().scrollTop();
           endState = {
             left: $(this).offset().left,
-            top: $(this).offset().top + $(this).parent().parent().parent().scrollTop(),
+            top: $(this).offset().top + scrollOff,
             width: $(this).width(),
             height: $(this).height(),
             textAlign: $(this).css('text-align'),
-            borderRadius: $(this).css('borderRadius')};
+            borderRadius: $(this).css('borderRadius'),
+            color: $(this).css('color'),
+            fontSize: $(this).css('font-size')};
         }
         $('body').append(animationTarget);
-        animationTarget.addClass('.removeMe');
-        animationTarget.css({top: startState.top, left: startState.left, width: startState.width, height: startState.height, borderRadius: startState.borderRadius, position: 'absolute'});
         index++;
       });
+      animationTarget.css({
+          fontSize: endState.fontSize,
+          color: endState.color,
+          top: startState.top,
+          left: startState.left,
+          width: startState.width,
+          height: startState.height,
+          borderRadius: startState.borderRadius,
+          position: 'absolute'});
+
       if(finalObject.css('textAlign') === 'center'){
         animationTarget.css('textAlign', endState.textAlign);
       }
