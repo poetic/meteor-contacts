@@ -1,0 +1,20 @@
+<template name="contactsIndex">
+  <ul class="collection">
+    {{#each contacts}}
+      <li class="collection-item">
+        <a href="{{pathFor route='contacts.show'}}">
+          <span>
+            <!-- TODO: first_name super-id binding should be changed to something more unique to link transitions
+                 TODO: something like super-id='{{unique identifier to model + type}}'
+                 type being avatar, name, company ect -->
+            <img super-hero='true' super-id="{{first_name}}" src="{{image}}" class="circle profile-pic">
+          </span>
+          <span class="person-info">
+            <div class="name" super-id="{{first_name}}-name">{{first_name}} {{last_name}}</div>
+            <div class="company" super-id="{{first_name}}-company">{{company_name}}</div>
+          </span>
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+</template>

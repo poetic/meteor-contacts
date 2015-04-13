@@ -6,7 +6,7 @@ Router.configure({
 
 
 Router.route('/', function() {
-  this.render('contacts', {
+  this.render('contactsIndex', {
     data: {
       contacts: function() {
         var searchTerm = Session.get('searchTerm');
@@ -33,17 +33,15 @@ Router.route('/', function() {
 });
 
 Router.route('/contact/:_id', {
-  name: 'contact.show',
+  name: 'contacts.show',
   path: '/contact/:_id',
-  template: 'contactShow',
   data: function() {
     return Contacts.findOne({_id: this.params._id});
   },
   onAfterAction: function() {
     Session.set('pageTitle', 'Contacts');
+
     // trigger looking for matching super-ids in the html
     Meteor.transitioner.heroAnimations();
   }
 });
-
-
