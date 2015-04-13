@@ -4,6 +4,7 @@ Router.configure({
   loadingTemplate: 'loadingLayout'
 });
 
+
 Router.route('/', function() {
   this.render('contacts', {
     data: {
@@ -19,12 +20,16 @@ Router.route('/', function() {
           sort: { last_name: 1 }
         });
       }
-    }
+    },
   });
   Session.set('pageTitle', 'Contact');
-
   // TODO: Load this in the proper place...
   $('ul.tabs').tabs();
+}, {
+  onAfterAction: function(){
+    // trigger looking for matching super-ids in the html
+    Meteor.transitioner.heroAnimations();
+  }
 });
 
 Router.route('/contact/:_id', {
@@ -36,10 +41,9 @@ Router.route('/contact/:_id', {
   },
   onAfterAction: function() {
     Session.set('pageTitle', 'Contacts');
+    // trigger looking for matching super-ids in the html
+    Meteor.transitioner.heroAnimations();
   }
 });
 
-Transitioner.default({
-  in: 'transition.slideRightBigIn',
-  out: 'transition.slideRightBigOut'
-});
+
