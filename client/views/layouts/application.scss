@@ -62,7 +62,11 @@ footer {
 .contact-header{
   text-align: center;
 }
-
+// Article on contacts page has no height on safari this is a workaround
+// this should be refactored later into a more suitable design layout
+article{
+  height: 95%;
+}
 // TODO: Later
 .transitioner {
   overflow: visible;
