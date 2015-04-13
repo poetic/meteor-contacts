@@ -2,7 +2,8 @@ ContactsIndexController = ApplicationController.extend({
   data: {
     contacts: function() {
       var searchTerm = Session.get('searchTerm');
-      return Contacts.find({
+
+      var contacts = Contacts.find({
         $or: [
           { first_name: new RegExp(searchTerm, 'i') },
           { last_name: new RegExp(searchTerm, 'i') },
@@ -11,11 +12,14 @@ ContactsIndexController = ApplicationController.extend({
       }, {
         sort: { last_name: 1 }
       });
+
+      Session.set('pageTitle', 'Contacts (' + contacts.count() + ')');
+
+      return contacts;
     }
   },
 
   action: function() {
-    Session.set('pageTitle', 'Contacts');
     this.render();
 
     // TODO: Load this in the proper place...
