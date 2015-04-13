@@ -22,8 +22,5 @@ ContactsIndexController = ApplicationController.extend({
   action: function() {
     this.render('contactsIndex');
     this.render('_contactsSearch', {to: 'header'});
-
-    // TODO: Load this in the proper place...
-    $('ul.tabs').tabs();
   }
 });
