@@ -67,3 +67,7 @@ footer {
 .transitioner {
   overflow: visible;
 }
+// keeps the face in front ---  TODO: add a super-primary class to always have the highest z-index
+.circle{
+  z-index: 5;
+}

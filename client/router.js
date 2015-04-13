@@ -27,6 +27,7 @@ Router.route('/', function() {
   $('ul.tabs').tabs();
 }, {
   onAfterAction: function(){
+    // trigger looking for matching super-ids in the html
     Meteor.transitioner.heroAnimations();
   }
 });
@@ -40,6 +41,7 @@ Router.route('/contact/:_id', {
   },
   onAfterAction: function() {
     Session.set('pageTitle', 'Contacts');
+    // trigger looking for matching super-ids in the html
     Meteor.transitioner.heroAnimations();
   }
 });

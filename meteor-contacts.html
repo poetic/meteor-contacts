@@ -36,6 +36,9 @@
       <li class="collection-item">
         <a href="{{pathFor route='contact.show'}}">
           <span>
+            <!-- TODO: first_name super-id binding should be changed to something more unique to link transitions
+                 TODO: something like super-id='{{unique identifier to model + type}}'
+                 type being avatar, name, company ect --> 
             <img super-hero='true' super-id="{{first_name}}" src="{{image}}" class="circle profile-pic">
           </span>
           <span class="person-info">
@@ -50,7 +53,7 @@
 
 <template name="contactShow">
   <div  class="contact-header">
-    <img super-hero='true' super-id="{{first_name}}" src="{{image}}" class="circle">
+    <img super-hero='true' super-id="{{first_name}}" src="{{image}}" class="circle radius-test">
     <div super-id="{{first_name}}-name">{{first_name}} {{last_name}}</div>
   <div super-id="{{first_name}}-company">{{company_name}}</div>
   </div>

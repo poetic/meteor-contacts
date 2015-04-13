@@ -1,21 +1,13 @@
+// Use only one namespace for the entire functionality of transitions
+
 Meteor.transitioner = (function(){
   var Interface = {};
   var registeredAnimations = [];
   var self = Interface;
+  // boolean to hack around iron router being called twice during transitions
   Interface.animated = false;
-  Interface.slideListIn = function(){
-    if($('.collection-item').length === 0 && !Interface.animated){
-      setTimeout(function(){Interface.slideListIn()}, 100);
-    }
-    else if(!Interface.animated){
-      Interface.animated = true;
-      $('.collection-item').velocity('transition.perspectiveLeftIn', {stagger: 55, duration: 1000});
-      $('.tab').velocity('transition.slideUpIn', {stagger: 55, duration: 1000});
-      setTimeout(function(){Interface.animated = false}, 2000);
-    }
-  }
+
   Interface.heroAnimations = function(){
-    console.log('called hero');
     var allHeros = $("[super-id]");
     var found = false;
     var interval = setInterval(function(){
@@ -25,7 +17,6 @@ Meteor.transitioner = (function(){
           if(!self.isRegistered('hero' + $(this).attr('super-id'))){
             self.registerAnimation('hero' + $(this).attr('super-id'));
             self.animateHero(target);
-            console.log('match-found');
           }
           found = true;
         }
@@ -51,33 +42,37 @@ Meteor.transitioner = (function(){
            top: $(this).offset().top,
            width: $(this).width(),
            height: $(this).height(),
-           textAlign: $(this).css('text-align')};
+           textAlign: $(this).css('text-align'),
+           borderRadius: $(this).css('borderRadius')};
         }
       if(index === 1){
         finalObject = $(this);
         finalObject.css('visibility', 'hidden');
-        console.log($(this).parent().parent().parent().scrollTop());
         endState = {
           left: $(this).offset().left,
           top: $(this).offset().top + $(this).parent().parent().parent().scrollTop(),
           width: $(this).width(),
           height: $(this).height(),
-          textAlign: $(this).css('text-align')}
+          textAlign: $(this).css('text-align'),
+          borderRadius: $(this).css('borderRadius')};
       }
       $('body').append(animationTarget);
       animationTarget.addClass('.removeMe');
-      animationTarget.css({top: startState.top, left: startState.left, width: startState.width, height: startState.height, position: 'absolute'});
+      animationTarget.css({top: startState.top, left: startState.left, width: startState.width, height: startState.height, borderRadius: startState.borderRadius, position: 'absolute'});
       index++;
     });
     if(finalObject.css('textAlign') === 'center'){
       animationTarget.css('textAlign', endState.textAlign);
     }
-    console.log('startStateTop', startState.top, 'endStateTop', endState.top);
-    animationTarget.animate({
+    else if(startState.textAlign === 'center'){
+      animationTarget.css('textAlign', 'center');
+    }
+    animationTarget.velocity({
           top: endState.top,
           left: endState.left,
           width: endState.width,
           height: endState.height,
+          borderRadius: endState.borderRadius
         }, {
           complete: function(){
             animationTarget.remove();
