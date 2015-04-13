@@ -1,0 +1,30 @@
+<head>
+  <title>Admin</title>
+</head>
+
+<body>
+</body>
+
+<template name="adminApplicationLayout">
+  <header>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+        <span href="#" class="brand-logo center">Contacts</span>
+        <form class="right">
+          <div class="input-field">
+            <input id="search" type="search" required>
+            <label for="search"><i class="mdi-action-search"></i></label>
+            <i class="mdi-navigation-close"></i>
+          </div>
+        </form>
+      </div>
+    </nav>
+    <ul id="slide-out" class="side-nav">
+      <li><a href="#">Contacts</a></li>
+    </ul>
+  </header>
+  <article>
+    {{> yield}}
+  </article>
+</template>

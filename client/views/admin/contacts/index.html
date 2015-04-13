@@ -1,0 +1,15 @@
+<template name="adminContactsIndex">
+  <ul class="collection">
+    {{#each contacts}}
+    <li class="collection-item">
+      <span>
+        <img src="{{image}}" class="circle profile-pic">
+      </span>
+      <span class="person-info">
+        <div class="name">{{first_name}} {{last_name}}</div>
+        <div class="company">{{company_name}}</div>
+      </span>
+    </li>
+    {{/each}}
+  </ul>
+</template>
