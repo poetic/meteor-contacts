@@ -11,6 +11,7 @@
       <div class="nav-wrapper">
         <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
         <span href="#" class="brand-logo center">Contacts</span>
+
         <form class="right">
           <div class="input-field">
             <input id="search" type="search" required>
@@ -18,13 +19,18 @@
             <i class="mdi-navigation-close"></i>
           </div>
         </form>
+
+        <a href="?modal=adminContactsNew" class="right"><i class="mdi-content-add"></i></a>
       </div>
     </nav>
     <ul id="slide-out" class="side-nav">
       <li><a href="#">Contacts</a></li>
     </ul>
   </header>
+
   <article>
     {{> yield}}
   </article>
+
+  {{> yield 'ironModal'}}
 </template>
