@@ -11,35 +11,42 @@
       <div class='profile-company'>{{companies.[0].name}}</div>
       <div class="member-since">YPO Member since Nov 2010</div>
     </div>
-    {{#each companies}}
-    <div class="contact-company-info company-{{coid}}">
-      <div class="header">
-        {{name}}
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        {{#each companies}}
+          <div class="swiper-slide">
+            <div class="contact-company-info company-{{coid}}">
+              <div class="header">
+                {{name}}
+              </div>
+              <div class='content'>
+                <div class='assistant'>
+                  <div class='label-for'>{{../first_name}}'s Assistant</div>
+                  <div class='info-for'>{{assistant.first_name}} {{assistant.last_name}}</div>
+                </div>
+                <div class='email'>
+                  <div class='label-for'>Work Email</div>
+                  <div class='info-for'>{{email}}</div>
+                </div>
+                <div class='phone'>
+                  <div class='label-for'>Cell Phone</div>
+                  <div class='info-for'>{{phone}}</div>
+                </div>
+                <div class='address'>
+                  <div class='label-for'>Office Address</div>
+                  <div class='info-for'>{{address_first}}<br>{{companies.[0].address_second}}</div>
+                </div>
+                <div class='website'>
+                  <div class='label-for'>Website</div>
+                  <div class='info-for'>{{website}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{/each}}
       </div>
-      <div class='content'>
-        <div class='assistant'>
-          <div class='label-for'>{{../first_name}}'s Assistant</div>
-          <div class='info-for'>{{assistant.first_name}} {{assistant.last_name}}</div>
-        </div>
-        <div class='email'>
-          <div class='label-for'>Work Email</div>
-          <div class='info-for'>{{email}}</div>
-        </div>
-        <div class='phone'>
-          <div class='label-for'>Cell Phone</div>
-          <div class='info-for'>{{phone}}</div>
-        </div>
-        <div class='address'>
-          <div class='label-for'>Office Address</div>
-          <div class='info-for'>{{address_first}}<br>{{companies.[0].address_second}}</div>
-        </div>
-        <div class='website'>
-          <div class='label-for'>Website</div>
-          <div class='info-for'>{{website}}</div>
-        </div>
-      </div>
+      <div class="swiper-pagination"></div>
     </div>
-    {{/each}}
     <div class='company-info-links'>
       {{#each companies}}
         <div class='company-info-{{coid}}'></div>
