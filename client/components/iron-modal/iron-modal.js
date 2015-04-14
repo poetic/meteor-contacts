@@ -5,6 +5,8 @@ Iron.Router.hooks.ironModal = function () {
       to: 'ironModal',
       data: function () { return {template: modal} }
     });
+  } else {
+    this.render(null, {to: 'ironModal'});
   }
 
   this.next();
@@ -13,5 +15,13 @@ Iron.Router.hooks.ironModal = function () {
 Router.onBeforeAction('ironModal');
 
 Template.ironModal.rendered = function() {
-  $(this.firstNode).openModal();
+  $(this.firstNode).openModal({
+    complete: function() {
+      Router.go('/admin');
+    }
+  });
+}
+
+Template.ironModal.destroyed = function() {
+  $(this.firstNode).closeModal();
 }
