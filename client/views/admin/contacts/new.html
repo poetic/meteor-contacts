@@ -1,7 +1,7 @@
 <template name="adminContactsNew">
   <div class="modal-content">
     <h4>New Contact</h4>
-    <p>[put form here]</p>
+    {{> quickForm collection="Contacts" id="newContactForm" type="insert"}}
   </div>
   <div class="modal-footer">
     <a href="#" class=" modal-action modal-close waves-effect waves-green btn-flat">Save</a>

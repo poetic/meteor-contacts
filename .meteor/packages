@@ -16,3 +16,6 @@ ccorcos:transitioner
 dburles:collection-helpers
 underscore
 swiper:swiper
+aldeed:autoform
+aldeed:simple-schema
+aldeed:collection2
