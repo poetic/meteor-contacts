@@ -80,7 +80,14 @@ if(!window.Meteor.transitioner){
         if(index === 1){
           finalObject = $(this);
           finalObject.css('visibility', 'hidden');
-          var scrollOff = $(this).parent().parent().parent().parent().scrollTop();
+          var scrollCheck = $(this);
+          var scrollOff = 0;
+          while(!scrollCheck.is('body')){
+            if(scrollCheck.scrollTop() > 0){
+              scrollOff += scrollCheck.scrollTop();
+            }
+            scrollCheck = scrollCheck.parent();
+          }
           endState = {
             left: $(this).offset().left,
             top: $(this).offset().top + scrollOff,
@@ -110,8 +117,20 @@ if(!window.Meteor.transitioner){
       else if(startState.textAlign === 'center'){
         animationTarget.css('textAlign', 'center');
       }
+      var temp = endState.top-$('.transitioner').offset().top;
+      var eStop = $('.transitioner').offset().top + finalObject.parent().css('padding-top');
+      if(temp < $(window).height()){
+        $('.transitioner').scrollTop(0);
+        eStop = endState.top;
+      }
+      else{
+        console.log('hey');
+        $('.transitioner').animate({
+          scrollTop: temp
+        }, 1000);
+      }
       animationTarget.velocity({
-            top: endState.top,
+            top: eStop,
             left: endState.left,
             width: endState.width,
             height: endState.height,
@@ -158,6 +177,7 @@ else{
 }
 Transitioner.default({
   in: 'transition.fadeIn',
-  out: 'transition.fadeOut'
+  out: 'transition.fadeOut',
+  duration: 1000
 })
 

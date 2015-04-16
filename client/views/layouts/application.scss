@@ -19,7 +19,6 @@ header {
 
 article {
   flex-grow: 1;
-  overflow-y: scroll;
 }
 
 footer {
@@ -64,14 +63,37 @@ footer {
 }
 // Article on contacts page has no height on safari this is a workaround
 // this should be refactored later into a more suitable design layout
-article{
-  height: 95%;
-}
-// TODO: Later
-.transitioner {
-  overflow: visible;
-}
 // keeps the face in front ---  TODO: add a super-primary class to always have the highest z-index
 .circle{
   z-index: 5;
+}
+.transitioner{
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  overflow-y: scroll;
+  position: absolute;
+  -webkit-overflow-scrolling: touch;
+}
+// attempting to fix all layout issues.
+.application-header{
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 5%;
+  width: 100%;
+}
+.application-content{
+  position: relative;
+  left: 0;
+  height: 90%;
+  width: 100%;
+  overflow: auto;
+}
+.application-footer{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 5%;
+  width: 100%;
 }
