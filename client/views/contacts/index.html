@@ -2,7 +2,7 @@
   <ul class="collection">
     {{#each contacts}}
       <li class="collection-item">
-        <a href="{{pathFor route='contacts.show'}}">
+        <a href="?user={{_id}}">
           <span>
             <!-- TODO: first_name super-id binding should be changed to something more unique to link transitions
                  TODO: something like super-id='{{unique identifier to model + type}}'
@@ -17,4 +17,61 @@
       </li>
     {{/each}}
   </ul>
+  <div id='contactshow' style="display: none">
+    <div>{{user}}
+    <div class='contact-header-bg'><img src="{{user.image}}" class='blur'>
+      <div class='bottom-bg'></div>
+    </div>
+  </div>
+  <div class="contact-wrapper">
+    <div class="contact-header">
+      <img super-id="{{user.first_name}}" src="{{user.image}}" class="circle avatar-main">
+      <div class='profile-name'>{{user.first_name}} {{user.last_name}}</div>
+      <div class='profile-company'>{{user.companies.[0].name}}</div>
+      <div class="member-since">YPO Member since Nov 2010</div>
+    </div>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        {{#each user.companies}}
+          <div class="swiper-slide">
+            <div class="contact-company-info company-{{coid}}">
+              <div class="header">
+                {{name}}
+              </div>
+              <div class='content'>
+                <div class='assistant'>
+                  <div class='label-for'>{{../user.first_name}}'s Assistant</div>
+                  <div class='info-for'>{{assistant.first_name}} {{assistant.last_name}}</div>
+                </div>
+                <div class='email'>
+                  <div class='label-for'>Work Email</div>
+                  <div class='info-for'>{{email}}</div>
+                </div>
+                <div class='phone'>
+                  <div class='label-for'>Cell Phone</div>
+                  <div class='info-for'>{{phone}}</div>
+                </div>
+                <div class='address'>
+                  <div class='label-for'>Office Address</div>
+                  <div class='info-for'>{{address_first}}<br>{{companies.[0].address_second}}</div>
+                </div>
+                <div class='website'>
+                  <div class='label-for'>Website</div>
+                  <div class='info-for'>{{website}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+    <div class='company-info-links'>
+      {{#each companies}}
+        <div class='company-info-{{coid}}'></div>
+      {{/each}}
+    </div>
+  </div>
+  </div>
+
 </template>

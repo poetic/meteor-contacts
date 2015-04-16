@@ -27,3 +27,25 @@ Meteor.swiper.loadSwiper = function(){
     }, 100);
   }
 };
+Template.contactsShow.rendered = function(){
+  console.log("rendered");
+  Meteor.swiper.loadSwiper();
+};
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+Template.contactsIndex.helpers({
+  user: function(){
+    return Contacts.findOne();
+  }
+})
+
+Template.contactsIndex.events({
+  'click li': function(){
+    $('ul').hide();
+    $('#contactshow').show();
+  }
+});

@@ -8,8 +8,5 @@ ContactsShowController = ApplicationController.extend({
     Session.set('pageTitle', contact.fullName());
 
     return contact;
-  },
-  onAfterAction: function(){
-    Meteor.swiper.loadSwiper();
   }
 });

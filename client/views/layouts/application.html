@@ -10,16 +10,21 @@
     {{> yield 'header'}}
   </header>
   <article class='application-content'>
+
+  <div class='hidden' style="display: none">Some hidden content</div>
+    <div id='Contacts'>
     {{#transitioner}}
       {{> yield}}
     {{/transitioner}}
+    </div>
+    <div id="Calendar">Calendar</div>
+    <div id="Settings">Settings</div>
   </article>
   <footer class='application-footer'>
     <ul class="tabs">
-      <li class="tab"><a href="#test1">Test 1</a></li>
-      <li class="tab"><a href="#test2">Test 2</a></li>
-      <li class="tab"><a href="#test3">Test 3</a></li>
-      <li class="tab"><a href="#test4">Test 4</a></li>
+      <li class="tab"><a href="#Contacts">Contacts</a></li>
+      <li class="tab"><a href="#Calendar">Calendar</a></li>
+      <li class="tab"><a href="#Settings">Settings</a></li>
     </ul>
   </footer>
   {{> yield 'ironModal'}}

@@ -1,13 +1,13 @@
 <template name="contactsShow">
-     <div>
-    <div class='contact-header-bg'><img src="{{image}}" class='blur'>
+  <div>
+    <div class='contact-header-bg'><img src="{{user.image}}" class='blur'>
       <div class='bottom-bg'></div>
     </div>
-    </div>
+  </div>
   <div class="contact-wrapper">
     <div class="contact-header">
       <img super-id="{{first_name}}" src="{{image}}" class="circle avatar-main">
-      <div class='profile-name'>{{first_name}} {{last_name}}</div>
+      <div class='profile-name'>{{user.first_name}} {{last_name}}</div>
       <div class='profile-company'>{{companies.[0].name}}</div>
       <div class="member-since">YPO Member since Nov 2010</div>
     </div>
