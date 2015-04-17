@@ -2,18 +2,17 @@
   <ul class="collection">
     {{#each contacts}}
       <li class="collection-item">
-        <a href="?user={{_id}}">
-          <span>
-            <!-- TODO: first_name super-id binding should be changed to something more unique to link transitions
-                 TODO: something like super-id='{{unique identifier to model + type}}'
-                 type being avatar, name, company ect -->
-            <img super-id="{{first_name}}" src="{{image}}" class="circle profile-pic">
-          </span>
-          <span class="person-info">
-            <div class="name" super-id="{{first_name}}-name">{{first_name}} {{last_name}}</div>
-            <div class="company" super-id="{{first_name}}-company">{{companies.[0].name}}</div>
-          </span>
-        </a>
+        <a href="?user={{_id}}"></a>
+        <span>
+          <!-- TODO: first_name super-id binding should be changed to something more unique to link transitions
+               TODO: something like super-id='{{unique identifier to model + type}}'
+               type being avatar, name, company ect -->
+          <img super-id="{{first_name}}" src="{{image}}" class="circle profile-pic">
+        </span>
+        <span class="person-info">
+          <div class="name" super-id="{{first_name}}-name">{{first_name}} {{last_name}}</div>
+          <div class="company" super-id="{{first_name}}-company">{{companies.[0].name}}</div>
+        </span>
       </li>
     {{/each}}
   </ul>
@@ -23,13 +22,15 @@
       <div class='bottom-bg'></div>
     </div>
   </div>
+  <div class="contact-header">
+    <img super-id="{{user.first_name}}" src="{{user.image}}" class="circle avatar-main">
+    <div class='profile-name'>{{user.first_name}} {{user.last_name}}</div>
+    <div class='profile-company'>{{user.companies.[0].name}}</div>
+    <div class="member-since">YPO Member since Nov 2010</div>
+  </div>
+
   <div class="contact-wrapper">
-    <div class="contact-header">
-      <img super-id="{{user.first_name}}" src="{{user.image}}" class="circle avatar-main">
-      <div class='profile-name'>{{user.first_name}} {{user.last_name}}</div>
-      <div class='profile-company'>{{user.companies.[0].name}}</div>
-      <div class="member-since">YPO Member since Nov 2010</div>
-    </div>
+    <div>
     <div class="swiper-container">
       <div class="swiper-wrapper">
         {{#each user.companies}}
@@ -65,6 +66,7 @@
         {{/each}}
       </div>
       <div class="swiper-pagination"></div>
+    </div>
     </div>
     <div class='company-info-links'>
       {{#each companies}}

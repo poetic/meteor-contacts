@@ -32,7 +32,7 @@ $label-text: #898989;
   opacity: 0.5;
 }
 .contact-wrapper{
-  position: absolute;
+  position: relative;
   top: 0;
   z-index: 1;
 }
@@ -43,7 +43,7 @@ $label-text: #898989;
   padding: 15px;
   clear: both;
 }
-.contact-company-info{
+.contact-company-info, .swiper-container{
   width: 95%;
   margin-left: 2.5%;
   overflow: hidden;

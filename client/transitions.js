@@ -32,7 +32,7 @@ if(!window.Meteor.transitioner){
     // TODO: think about how to handle users accidently putting two objects on the same page with the same super-id... these should be unique to templates
     // TODO: so a possible console.log error message may communicate this to people who aren't aware.
 
-    Interface.heroAnimations = function(){
+    Interface.heroAnimations = function(direction){
       var allHeros = $("[super-id]");
       var found = false;
       var interval;
@@ -48,7 +48,7 @@ if(!window.Meteor.transitioner){
           if(target.length > 1){
             if(!self.isRegistered('hero' + $(this).attr('super-id'))){
               self.registerAnimation('hero' + $(this).attr('super-id'));
-              self.animateHero(target);
+              self.animateHero(target, direction);
             }
             found = true;
           }
@@ -58,15 +58,24 @@ if(!window.Meteor.transitioner){
         }
       }, 100);
     }
-    Interface.animateHero = function(targets){
+    Interface.animateHero = function(targets, direction){
       var index = 0;
       var animationTarget;
       var finalObject;
       var startState;
       var endState;
       targets.each(function(){
-        if(index === 0){
-           animationTarget = $(this);
+        var first, second;
+        if(direction !== 'reverse'){
+          first = 0;
+          second = 1;
+        }
+        else{
+          first = 1;
+          second = 0;
+        }
+        if(index === first){
+           animationTarget = $(this).clone();
            startState = {
              left: $(this).offset().left,
              top: $(this).offset().top,
@@ -76,8 +85,8 @@ if(!window.Meteor.transitioner){
              borderRadius: $(this).css('borderRadius'),
              color: $(this).css('color'),
              fontSize: $(this).css('font-size')};
-          }
-        if(index === 1){
+        }
+        if(index === second){
           finalObject = $(this);
           finalObject.css('visibility', 'hidden');
           var scrollCheck = $(this);
@@ -137,8 +146,8 @@ if(!window.Meteor.transitioner){
             borderRadius: endState.borderRadius
           }, {
             complete: function(){
-              animationTarget.remove();
               finalObject.css('visibility', 'visible');
+              animationTarget.remove();
             },
             duration: 1000,
             step: function(){
